@@ -1,4 +1,3 @@
-README
 **Sissejuhatus Go keelde**
 Go, tuntud ka kui Golang, on Google'i arendatud avatud lähtekoodiga programmeerimiskeel, mis on loodud kiireks, lihtsaks ja usaldusväärseks tarkvara arendamiseks. Go keelt iseloomustab selle lihtsus, tõhusus ja suurepärane toetus samaaegseks töötlemiseks (concurrency).
 
