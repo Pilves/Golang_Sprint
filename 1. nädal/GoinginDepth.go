@@ -132,6 +132,49 @@ func AlphaNumber(n int) string {
 	return answer // Tagastab vastuse.
 }
 
+/*
+Simple String to Integer
+	Instructions
+Create a Go function that converts a valid string representation of a number into an integer.
+If the string is not a valid number, the function should return 0. The input will only contain one or more digits, and you don't need to handle signs like + or -.
+*/
+func SimpleStrToInt(s string) int { // Defineerib funktsiooni SimpleStrToInt, mis võtab ühe stringi ja tagastab täisarvu.
+	var answer int // Loob täisarvu tüüpi muutuja "answer", mis hoiab arvutatud tulemust.
+	for _, char := range s { // Käib läbi kõik tähemärgid stringis s.
+		answer = answer*10 + int(char-'0') // Teisendab tähemärgi arvuks, korrutab praeguse vastuse 10-ga ja lisab uue numbri.
+	}
+	return answer // Tagastab lõpliku täisarvu.
+}
+
+/*
+String to Integer
+	Instructions
+Create a Go function that mimics the behavior of the Atoi function. Atoi converts a string representing a number into an integer.
+	The function should return the integer value.
+	If the input string is not a valid number, it should return 0.
+	The function must handle signs such as + or -.
+	The exercise does not require you to return an error.
+*/
+// See funktsioon teisendab stringi, mis esindab numbrit, täisarvuks.
+func StrToInt(s string) int {
+	var answer int // Muutuja vastuse jaoks.
+	sign := 1      // Muutuja, mis hoiab märki; vaikimisi on see positiivne.
+	for i, char := range s {
+		if i == 0 { // Käsitseb esimest tähemärki eraldi.
+			if char == '-' { // Kui esimene märk on miinus,
+				sign = -1 // määra märk negatiivseks.
+				continue  // Jätka järgmise tähemärgi juurde.
+			} else if char == '+' { // Kui esimene märk on pluss,
+				continue // lihtsalt jätkata järgmise tähemärgiga.
+			}
+		}
+		if char < '0' || char > '9' { // Kui tähemärk ei ole vahemikus '0' kuni '9',
+			return 0 // tagasta 0, kuna see ei ole kehtiv number.
+		}
+		answer = answer*10 + int(char-'0') // Arvutab uue väärtuse, korrutades praeguse vastuse 10-ga ja lisades uue numbri väärtuse.
+	}
+	return answer * sign // Tagastab lõpliku arvu, rakendades märki.
+}
 
 func main(){
 	fmt.Println(AlphabetMastery(6)) // Prindib tulemuse funktsioonist AlphabetMastery, kus sisendiks on 26 || OUTPUT: abcdef.
@@ -140,5 +183,16 @@ func main(){
 	fmt.Println(Combinations())                  // See funktsioon genereerib kõik unikaalsed kolmekohalised kombinatsioonid numbritega 0 kuni 9, kus iga järgnev number on suurem kui eelmine. || OUTPUT: "012, 013, ..., 689, 789"
 	fmt.Println(Countdown(7))                    // See funktsioon loob loenduri stringi ühest ühekohalisest numbrist, jättes iga teise numbri vahele, kuni jõuab nullini. OUTPUT: "7, 5, 3, 1, 0!"
 	fmt.Println(AlphaNumber(-1280))              //teisendab täisarvu stringiks, kus iga number asendatakse tähestiku vastava tähega, säilitades negatiivse märgi. OUTPUT: "-bcia"
+	fmt.Println(SimpleStrToInt("0000000012345")) // Prindib stringi "0000000012345" täisarvuks teisendatud tulemuse.|| OUTPUT:12345
+		//StrToInt testcases
+	fmt.Println("\nStrToInt testcases")
+	fmt.Println(StrToInt("12345"))         // Funktsioon teisendab "12345" täisarvuks 12345. || Output: 12345
+	fmt.Println(StrToInt("0000000012345")) // Eesliidetud nullid ei mõjuta numbrilist väärtust, seega "0000000012345" muutub 12345. || Output: 12345
+	fmt.Println(StrToInt("012 345"))       // Tühik on kehtetu märk numbristringis, mistõttu tagastatakse 0. || Output: 0
+	fmt.Println(StrToInt("Hello World!"))  // Kuna sisend ei ole kehtiv numbriline string, tagastatakse 0. || Output: 0
+	fmt.Println(StrToInt("+1234"))         // Plussmärk (+) ees näitab positiivset arvu, seega "+1234" teisendatakse täisarvuks 1234.|| Output: 1234
+	fmt.Println(StrToInt("-1234"))         // Miinusmärk (-) ees näitab negatiivset arvu, seega "-1234" teisendatakse täisarvuks -1234. || Output: -1234
+	fmt.Println(StrToInt("++1234"))        // Korduvad plussmärgid ei ole kehtivad, mistõttu tagastatakse 0. || Output: 0
+	fmt.Println(StrToInt("--1234"))        // Korduvad miinusmärgid ei ole kehtivad, mistõttu tagastatakse 0. || Output: 0
 
 }
