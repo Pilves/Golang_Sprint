@@ -4,15 +4,16 @@ Welcome to the Week 1 collection of Go programming modules. This series introduc
 
 ## 📚 File Descriptions
 
-- **ConditionalsLoops.go**: Introduces the core control structures like `if`, `else`, and `for` loops, demonstrating how to direct the flow of a Go program.
+- **ConditionalsLoops.go**: This file provides a deep dive into Go's decision-making structures, explaining how to use conditionals (`if`, `else`) and iterations (`for` loops) to dictate program logic. It includes functions to determine the negativity of a number, compare integer and float values, discern seasons from months, sum numbers up to a given limit, and explore the alphabetical range between two characters. It's a compendium of exercises ranging from basic to intermediate levels, complete with scenarios that handle edge cases like division by zero or identifying leap years.
 
-- **DataTypesVariablesCalculations.go**: Explores the various data types in Go, variable declarations, and basic arithmetic operations, setting the stage for complex computation.
 
-- **exam.go**: Designed to evaluate your understanding of Go through quizzes and practical problems, reinforcing your learning experience.
+- **DataTypesVariablesCalculations.go**: This file is a practical tutorial on managing data in Go. It includes functions for basic arithmetic operations, mean calculations using floating-point numbers, type conversion with rounding, string manipulation through concatenation, and character manipulation by shifting positions within the alphabet. Additionally, it showcases the intriguing task of reversing alphabet values, a delightful twist on character encoding.
 
-- **GoingInDepth.go**: Dives deeper into Go, covering nuanced syntax and advanced practices for learners ready to elevate their Go expertise.
+- **exam.go**: A test of logical reasoning and problem-solving in Go, this file contains functions that generate a chessboard pattern of squares, calculate the number of years required to reach a financial goal with compound interest, and optimize the calculation for efficiency. It demonstrates conditional logic and iteration over ranges, providing clear examples of algorithmic thinking and Go's mathematical capabilities.
 
-- **interestMonths.go**: Applies Go programming to real-world scenarios, such as calculating interest over time, showcasing the use of functions and user interactions.
+- **GoingInDepth.go**: Delving into the intricacies of Go, this file introduces advanced manipulation of the Latin alphabet and numerical computations. It includes creating alphabetical sequences, reversing the alphabet with customizable steps, pairing numbers in ascending order, generating numerical combinations and triplets, and advanced countdowns. This file also tackles the challenge of converting numeric strings to integers, emphasizing Go's versatility in handling different data types and complex logic.
+
+- **interestMonths.go**: This file offers a practical application of financial calculations within Go, focusing on compound interest computed monthly. The function `InterestWithMonths` calculates how many years and months it will take to grow an initial investment to a target amount given a yearly interest rate. It provides an excellent example of using loops for financial modeling and includes conditions to handle monthly calculations, making it a valuable resource for those interested in financial software development.
 
 ## 🚀 Getting Started
 
@@ -22,6 +23,7 @@ After setting up Go, run the programs using your terminal:
 
 ```sh
 go run <file-name>.go
+```
 Remember to substitute `<file-name>` with the specific name of the program file you wish to run.
 
 ## 🎯 Learning Outcomes
