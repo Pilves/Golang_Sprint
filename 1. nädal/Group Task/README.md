@@ -17,7 +17,7 @@ Initiate a secure encryption process with the following steps:
 Example sessions:
 
 ```bash
-Welcome to the Cypher Tool
+Welcome to the Cypher Tool!
 Select operation (1: Encrypt, 2: Decrypt):
 1
 Select cipher (1: Rot13, 2: Reverse, 3: Base64):
