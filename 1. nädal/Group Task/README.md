@@ -14,7 +14,7 @@ Initiate a secure encryption process with the following steps:
 4. Enter the message you desire to secure 📝.
 5. Press enter and witness the immediate delivery of your encrypted or decrypted message, directly in the command line.
 
-Example session:
+Example sessions:
 
 ```bash
 Welcome to the Cypher Tool
@@ -25,6 +25,36 @@ Select cipher (1: Rot13, 2: Reverse, 3: Base64):
 Enter your message:
 Confidential Data
 Result: Pbasvqragvny Qngn
+```
+```bash
+Welcome to the Cypher Tool!
+Select operation (1: Encrypt, 2: Decrypt):
+1
+Select cipher (1: Rot13, 2: Reverse 3: Base64):
+2
+Enter your message:
+Confidential Data
+Result: Xlmurwvmgrzo Wzgz
+```
+```bash
+Welcome to the Cypher Tool!
+Select operation (1: Encrypt, 2: Decrypt):
+1
+Select cipher (1: Rot13, 2: Reverse 3: Base64):
+3
+Enter your message:
+Confidential Data
+Result: Q29uZmlkZW50aWFsIERhdGE
+```
+```bash
+Welcome to the Cypher Tool!
+Select operation (1: Encrypt, 2: Decrypt):
+2
+Select cipher (1: Rot13, 2: Reverse 3: Base64):
+3
+Enter your message:
+Q29uZmlkZW50aWFsIERhdGE
+Result: Confidential Data
 ```
 ## 🧩 Ciphers
 
