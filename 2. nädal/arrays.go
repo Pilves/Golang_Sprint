@@ -14,14 +14,15 @@ Kui min on suurem või võrdne max'iga, tagastatakse tühi jada.
 */
 
 func GenerateRange(min, max int) []int {
-	var answer []int // Vastuseks on arvude jada.
-	if min >= max{
-		return []int{} // Kui min on suurem või võrdne max'iga, tagastame tühja jada.
+	var answer []int     // Step 1: Initialize an empty slice of integers
+	if min >= max {  // Step 2: Handle the case where min is greater than or equal to max
+		return nil // Return a nil slice directly
 	}
-	for i:= min; i <max;i++{
-		answer = append(answer, i) // Lisame iga arvu järjest vastusesse.
+	 // Step 3: Populate the slice with integers from min to max-1
+	for i:= min ; i< max; i++{
+		answer = append(answer, i)
 	}
-	return answer // Tagastame arvude jada.
+	return answer // Step 4: Return the populated slice
 }
 
 
@@ -32,30 +33,21 @@ Write a Go function that takes an array of float64, two indices, and removes ele
 
 //Funktsioon eemaldab listist teatud vahemikus olevad elemendid. Vahemiku alumine piir eemaldatakse ja ülemine jäetakse.
 func RemoveElementsInRange(arr []float64, from, to int) []float64 {
-	length := len(arr) // Määrame listi pikkuse.
-	if from < 0{
-		from += length
+	// Step 1: Correct the order of indices if necessary
+	if to < from{
+		to, from = from, to
 	}
-	if to < 0{
-		to += length
+	 // Step 2: Adjust indices to be within the valid range
+	 if from < 0{
+		 from = 0 // Set from to 0 if it is negative
 	}
-	if from < 0{
-		from = 0
+	if to > len(arr){
+		to = len(arr) // Set to to the length of the array if it exceeds
 	}
-	if to > length{
-		to = length
-	}
-	if from > to{
-		from, to = to, from // Kui indeksid on vale järjekorras, vahetame neid.
-	}
-	var result []float64
-	if from >= 0 && to <= length && from < to{
-		result = append(arr[:from], arr[to:]...) // Ühendame osad, mis ei jää vahemikku.
-	}else{
-		result = arr
-	}
-	return result // Tagastame muudetud listi.
-
+	// Step 3: Remove elements between from (inclusive) and to (exclusive)
+	var answer []float64
+	answer = append(arr[:from], arr[to:]...)
+	return answer
 }
 /*
 Balance Out
@@ -64,26 +56,31 @@ Write a Go function that takes an array of booleans and adds the minimum number 
 
 //Funktsioon tasakaalustab tõesete ja väärade väärtuste arvu listis, lisades vajalikud elemendid lõppu.
 func BalanceOut(arr []bool) []bool {
-	trueCount :=0 // Loendame tõeste väärtuste arvu.
-	falseCount := 0 // Loendame väärade väärtuste arvu.
-	for _,value := range arr{
-		if value{
-			trueCount++
-		}else{
-			falseCount++
+	// Step 1: Initialize counters for true and false
+	countTrue := 0
+	countFalse := 0
+	// Step 2: Count the number of true and false in the array
+	for _,i:= range arr{
+		if i == true{
+			countTrue++
+		}else if i == false{
+			countFalse++
 		}
 	}
-
-	if trueCount > falseCount{
-		for i:=0; i< (trueCount-falseCount);i++{
-			arr = append(arr, false) // Lisame vajaliku arvu väärade väärtuste.
+	 // Step 3: Calculate the difference and identify which element to add
+	if countTrue > countFalse{
+		// Step 4: Append the required number of booleans to the array
+		for i:=0; i< (countTrue-countFalse); i++{
+			arr = append(arr, false)
 		}
-	}else if falseCount > trueCount{
-		for i :=0; i< (falseCount-trueCount);i++{
-			arr = append(arr, true) // Lisame vajaliku arvu tõeseid väärtusi.
+	}else if countTrue < countFalse{
+		// Step 4: Append the required number of booleans to the array
+		for i:=0; i <(countFalse - countTrue); i++{
+			arr = append(arr, true)
 		}
 	}
-	return arr // Tagastame muudetud listi.
+	// Step 5: Return the modified array
+	return arr
 }
 
 /*
@@ -93,17 +90,26 @@ Write a Go function that takes a 2D array of integers and an integer value. The 
 */
 //Funktsioon filtreerib välja alamlistid, mille elementide summa on väiksem kui etteantud piirväärtus.
 func FilterBySum(arr [][]int, limit int) [][]int {
-	var result [][]int
+	if len(arr)== 0{
+		return nil
+	}
+	// Step 1: Initialize an empty list to hold the filtered subarrays
+	var result = make([][]int, 0)
+	// Step 2: Iterate over each subarray in the matrix
 	for _,subarray := range arr{
-		sum :=0
-		for _, num := range subarray{
-			sum += num // Liidame kõik numbrid alamlistis.
+		// Step 3: Calculate the sum of elements in the current subarray
+		sum := 0
+		for _,num:= range subarray{
+			sum += num
 		}
-		if sum >=limit{
-			result = append(result, subarray) // Kui summa on piisav, lisame tulemusele.
+		// Step 4: Check if the sum meets the threshold
+		if sum >= limit{
+			// Step 5: If the sum is greater than or equal to the threshold, include the subarray in the result
+			result = append(result, subarray)
 		}
 	}
-	return result // Tagastame filtreeritud listi.
+	 // Step 6: Return the list of filtered subarrays
+	return result
 }
 
 
@@ -114,15 +120,20 @@ Write a function that sorts a slice of integers in ascending order.
 */
 //Funktsioon sorteerib täisarvude järjendi kasvavas järjekorras.
 func SortIntegerTable(table []int) []int {
-	n:= len(table) // Täisarvude listi pikkus.
+	// Step 1: Retrieve the number of elements in the slice
+	n:= len(table)
+	// Step 2: Implement Bubble Sort algorithm
 	for i:=0;i<n;i++{
 		for j:=0;j<n-i-1;j++{
+			// Step 3: Compare adjacent elements and swap if in wrong order
 			if table[j] > table[j+1]{
-				table[j], table[j+1] = table[j+1], table[j] // Vahetame elemendid, kui need on vales järjekorras.
+				// Swap elements at positions j and j+1
+				table[j], table[j+1] = table[j+1], table[j]
 			}
 		}
 	}
-	return table // Tagastame sorteeritud listi.
+	 // Step 4: Return the sorted slice
+	return table
 }
 
 
@@ -133,11 +144,17 @@ Write a Go function that takes an array of strings, applies the StrToInt functio
 */
 //Funktsioon teisendab stringide listi täisarvudeks, kasutades StrToInt funktsiooni.
 func BulkAtoi(arr []string) []int {
-	result := make([]int, len(arr)) // Loome lõpplisti tulemustele.
-	for i, str := range arr{
-		result[i] = StrToInt(str) // Teisendame iga stringi täisarvuks.
+	// Step 1: Initialize an empty array for integers
+	result := make([]int, 0)
+	// Step 2: Loop through each string in the input array
+	for _,i := range arr{
+		// Step 3: Convert the string to an integer using StrToInt
+		num := StrToInt(i)
+		// Step 4: Append the integer to the integerArray
+		result = append(result, num)
 	}
-	return result // Tagastame täisarvude listi.
+	// Step 5: Return the array of integers
+	return result
 }
 
 func StrToInt(s string) int {
@@ -173,34 +190,42 @@ Dive into the world of number combinations! Your goal is to create a function th
 */
 //Funktsioon loob kõik võimalikud kombinatsioonid n pikkusega, kasvavas järjekorras.
 func CombN(n int) []string {
+	// Step 1: Handle edge cases
 	if n <= 0{
-		return []string{} // Kui n on 0 või negatiivne, tagastame tühja listi.
+		return nil
 	}
-	results:= []string{}
-	stack := make([]int,n)
-	var startIndex, num int
-
-	for{
-		comb :=""
-		for i:=0;i<n;i++{
-			comb += fmt.Sprintf("%d", stack[i]) // Loome kombinatsiooni stringi.
+	// Step 2: Initialize containers for results and the current combination
+	var result []string
+	stack := make([]int, n)
+	 // Step 3: Set initial combination in the stack
+	for i:= 0 ;i< n-1; i++{
+		stack[i]=i // Initial combination: 0, 1, 2, ..., n-1
+	}
+	// Step 4: Iterate to generate all combinations
+	for {
+		// Step 4.1: Convert the current stack to a string and store it
+		comb := ""
+		for _,v:= range stack{
+			comb += fmt.Sprintf("%d", v)
 		}
-		results = append(results, comb)
-		for startIndex = n-1; startIndex >= 0; startIndex--{
-			if stack[startIndex] < 9-(n-1-startIndex){
-				num = stack[startIndex] +1
-				break
-			}
+		result = append(result, comb)
+		// Step 4.2: Find the rightmost element that can be incremented
+		i:= n-1
+		for i>= 0 && stack[i] == 9-(n-1-i){
+			i--
 		}
-		if startIndex < 0{
-			break
+		// Step 4.3: Check if the entire combination has been processed
+		if i <0{
+			break // If no element can be incremented, exit the loop
 		}
-		for i := startIndex;i<n;i++{
-			stack[i]=num
-			num++
+		// Step 4.4: Increment the current element and adjust the following elements
+		stack[i]++
+		for j:=i+1; j<n;j++{
+			stack[j]=stack[j-1]+1
 		}
 	}
-	return results // Tagastame kõik kombinatsioonid.
+	// Step 5: Return all generated combinations
+	return result
 }
 
 func main(){
