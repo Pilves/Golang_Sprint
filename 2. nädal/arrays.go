@@ -195,10 +195,10 @@ func CombN(n int) []string {
 		return nil
 	}
 	// Step 2: Initialize containers for results and the current combination
-	var result []string
+	result := []string{}
 	stack := make([]int, n)
 	 // Step 3: Set initial combination in the stack
-	for i:= 0 ;i< n-1; i++{
+	for i := range stack{
 		stack[i]=i // Initial combination: 0, 1, 2, ..., n-1
 	}
 	// Step 4: Iterate to generate all combinations
@@ -215,13 +215,13 @@ func CombN(n int) []string {
 			i--
 		}
 		// Step 4.3: Check if the entire combination has been processed
-		if i <0{
+		if i < 0 {
 			break // If no element can be incremented, exit the loop
 		}
 		// Step 4.4: Increment the current element and adjust the following elements
 		stack[i]++
-		for j:=i+1; j<n;j++{
-			stack[j]=stack[j-1]+1
+		for j:=i+1; j < n; j++ {
+			stack[j] = stack[j-1] + 1
 		}
 	}
 	// Step 5: Return all generated combinations
@@ -237,5 +237,5 @@ func main(){
 	fmt.Println(SortIntegerTable([]int{5, 4, 3, 2, 1, 0})) // Sorteerib täisarvud kasvavas järjekorras.
 	fmt.Println(BulkAtoi([]string{"8", "kood", "-13"})) // Teisendab stringid täisarvudeks.
 	fmt.Println(CombN(1)) // Prindib kõik ühekohalised kombinatsioonid.
-	fmt.Println(CombN(3)) // Prindib kõik kolmekohalised kombinatsioonid.
+	fmt.Println(CombN(5)) // Prindib kõik kolmekohalised kombinatsioonid.
 }
