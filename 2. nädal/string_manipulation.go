@@ -1,24 +1,26 @@
 package main
 
-import(
+import (
 	"fmt"
-	"strings"
 	"math"
+	"strings"
 )
 
 /*
 Get first rune
+
 	Instructions
+
 Create a Go function that takes a non-empty string as input and returns the first character of the string as a rune.
 */
 func GetFirstRune(s string) rune {
 	// Initialize a variable 'answer' to store the rune result
 	var answer rune
 	// Initialize a variable 'answer' to store the rune result
-	if s != ""{
+	if s != "" {
 		// Convert the first character of the string to a rune and store it in 'answer'
 		answer = rune(s[0])
-	}else{
+	} else {
 		// If the string is empty, return the rune value 0 as the default case
 		return 0
 	}
@@ -26,10 +28,11 @@ func GetFirstRune(s string) rune {
 	return answer
 }
 
-
 /*
 Get Last Rune
+
 	Instructions
+
 Create a Go function that takes a non-empty string as input and returns the last character of the string as a rune.
 */
 func GetLastRune(s string) rune {
@@ -42,10 +45,11 @@ func GetLastRune(s string) rune {
 	return answer
 }
 
-
 /*
 Nth Rune
+
 	Instructions
+
 Create a Go function that takes a non-empty string as its first argument and an index as its second argument. The function should return the rune at the specified index in the string.
 */
 func NRune(s string, i int) rune {
@@ -53,15 +57,16 @@ func NRune(s string, i int) rune {
 	var answer rune
 	// Convert the character at the i-th index of string 's' to a rune
 	// and store it in 'answer'
-	answer= rune(s[i])
+	answer = rune(s[i])
 	// Return the rune value stored in 'answer'
 	return answer
 }
 
-
 /*
 Str Lenght
+
 	Instructions
+
 Create a Go function that accepts a string and returns two integers. The first integer represents the number of runes in the string, and the second integer represents the byte length of the string. The function should handle UTF-8 encoding for all characters.
 */
 func StrLength(s string) []int {
@@ -71,7 +76,7 @@ func StrLength(s string) []int {
 	// Initialize an empty list 'answer' to store results
 	var answer []int
 	// Loop through each character in the string 's'
-	for _, char := range s{
+	for _, char := range s {
 		// Increment the rune count for each character encountered
 		runeCount++
 		// Increment the byte count by the byte length of the current character
@@ -88,14 +93,16 @@ func StrLength(s string) []int {
 
 /*
 Str Reverse
+
 	Instructions
+
 Create a Go function that takes a string and returns the reversed version of that string.
 */
 func StrReverse(s string) string {
 	// Initialize an empty string 'answer' to store the reversed string
 	var answer string
 	// Loop from the end of the string 's' to the beginning
-	for i:= len(s) -1; i>=0; i--{
+	for i := len(s) - 1; i >= 0; i-- {
 		// Append the character at index i of string 's' to 'answer'
 		answer += string(s[i])
 	}
@@ -105,14 +112,16 @@ func StrReverse(s string) string {
 
 /*
 Is Lower?
+
 	Instructions
+
 Create a Go function that takes a string as its parameter. The function should return true if the string contains only lowercase characters, and false otherwise.
 */
 func IsLower(s string) bool {
 	// Loop through each character in the string 's'
-	for _,char := range s{
+	for _, char := range s {
 		// Check if the character is not a lowercase letter
-		if char < 'a' || char > 'z'{
+		if char < 'a' || char > 'z' {
 			// If the character is not between 'a' and 'z', return false
 			return false
 		}
@@ -123,13 +132,16 @@ func IsLower(s string) bool {
 
 /*
 Is Numeric?
+
 	Instructions
-Create a Go function that takes a string as its parameter. The function should return true if the string contains only numeric characters, and false otherwise.*/
+
+Create a Go function that takes a string as its parameter. The function should return true if the string contains only numeric characters, and false otherwise.
+*/
 func IsNumeric(s string) bool {
 	// Loop through each character in the string 's'
-	for _, num:= range s{
+	for _, num := range s {
 		// Check if the character is not a numeric digit
-		if num < '0' || num > '9'{
+		if num < '0' || num > '9' {
 			// If the character is not between '0' and '9', return false
 			return false
 		}
@@ -138,25 +150,26 @@ func IsNumeric(s string) bool {
 	return true
 }
 
-
 /*
 TO UPPER CASE
+
 	Instructions
+
 Create a Go function that takes a string as its parameter and returns a new string with each letter capitalized.
 */
-func ToUpperCase(s string) string{
+func ToUpperCase(s string) string {
 	// Initialize an empty string 'answer' to store the converted string
 	var answer string
-	 // Loop through each character in the string 's'
-	for _, char := range s{
+	// Loop through each character in the string 's'
+	for _, char := range s {
 		// Check if the character is a lowercase letter
-		if char >= 'a' && char <= 'z'{
+		if char >= 'a' && char <= 'z' {
 			// Convert the lowercase letter to uppercase
 			// The conversion is done by subtracting 'a' from 'char' to normalize (0-25),
 			// taking modulo 26 as a safety measure (although not necessary here),
 			// and then adding 'A' to shift to the uppercase range
-			answer+= string((char-'a')%26 + 'A')
-		}else{
+			answer += string((char-'a')%26 + 'A')
+		} else {
 			// If the character is not a lowercase letter, add it unchanged to 'answer'
 			answer += string(char)
 		}
@@ -165,10 +178,11 @@ func ToUpperCase(s string) string{
 	return answer
 }
 
-
 /*
 To Capital Case
+
 	Instructions
+
 Create a Go function that takes a string as its parameter. The function should capitalize the first letter of each word while converting the rest of the word to lowercase.
 In this task a word is defined as a sequence of alphanumeric characters.
 */
@@ -178,34 +192,34 @@ func ToCapitalCase(s string) string {
 	// Initialize a boolean 'capitalize' to true to handle the first character as a capital letter
 	capitalize := true
 	// Loop through each character in the string 's'
-	for _,char:= range s{
+	for _, char := range s {
 		// Check if the character is a non-alphanumeric (neither a letter nor a digit)
-		if (char < 'a' || char > 'z') && (char < 'A' || char > 'Z') && (char < '0' || char > '9'){
+		if (char < 'a' || char > 'z') && (char < 'A' || char > 'Z') && (char < '0' || char > '9') {
 			// Set 'capitalize' to true to capitalize the next alphabetic character
 			capitalize = true
 			// Add the non-alphanumeric character to 'answer'
-			answer+= string(char)
-		}else{
+			answer += string(char)
+		} else {
 			// If 'capitalize' is true, process for capitalization
-			if capitalize{
+			if capitalize {
 				// Check if 'char' is a lowercase letter
-				if char >='a' && char <= 'z'{
+				if char >= 'a' && char <= 'z' {
 					// Convert 'char' to an uppercase letter
-					char= char-'a'+'A'
+					char = char - 'a' + 'A'
 				}
 				// Add the potentially modified 'char' to 'answer'
-				answer+= string(char)
+				answer += string(char)
 				// Set 'capitalize' to false after capitalizing
-				capitalize= false
+				capitalize = false
 
-			} else{
+			} else {
 				// If not capitalizing, ensure 'char' is in lowercase
-				if char >= 'A' && char <= 'Z'{
+				if char >= 'A' && char <= 'Z' {
 					// Convert 'char' to a lowercase letter
-					char += 'a'-'A'
+					char += 'a' - 'A'
 				}
 				// Add the lowercase or unchanged 'char' to 'answer'
-				answer+= string(char)
+				answer += string(char)
 			}
 		}
 	}
@@ -213,24 +227,25 @@ func ToCapitalCase(s string) string {
 	return answer
 }
 
-
 /*
 Str Concat With
+
 	Instructions
+
 Create a Go function that takes a slice of strings and a separator string as its parameters. The function should return a new string by concatenating all the strings in the slice, with each string separated by the provided separator.
 */
 func StrConcatWith(strs []string, sep string) string {
 	// Initialize an empty string 'answer' to store the concatenated result
 	var answer string
 	// Loop through each string in the list 'strs' with its index 'i'
-	for i, str:= range strs{
+	for i, str := range strs {
 		// Check if the current string is the last in the list
-		if i == len(strs)-1{
+		if i == len(strs)-1 {
 			// If it is the last string, append it to 'answer' without the separator
-			answer+=str
-		}else{
+			answer += str
+		} else {
 			// If it is not the last string, append the string and the separator to 'answer'
-			answer+=str+sep
+			answer += str + sep
 		}
 	}
 	// Return the concatenated string stored in 'answer'
@@ -239,7 +254,9 @@ func StrConcatWith(strs []string, sep string) string {
 
 /*
 Split on Whitespaces
+
 	Instructions
+
 Create a Go function that takes a string as its parameter. The function should split the string into words and store them in a string slice. Words are separated by spaces, tabs, and newlines.
 */
 func SplitWhitespaces(s string) []string {
@@ -248,17 +265,17 @@ func SplitWhitespaces(s string) []string {
 	// Initialize 'start' to 0 to mark the beginning of a new substring
 	start := 0
 	// Loop through each character in the string 's' with its index 'i'
-	for i,char := range s{
+	for i, char := range s {
 		// Check if the current character is a whitespace (space, newline, or tab)
 		if char == ' ' || char == '\n' || char == '\t' {
 			// Append the substring from 'start' to 'i' (non-inclusive) to 'answer'
-			answer= append(answer, s[start:i])
+			answer = append(answer, s[start:i])
 			// Update 'start' to 'i+1' to begin a new substring after the current whitespace
-			start=i+1
+			start = i + 1
 		}
 	}
 	// After the loop, check if 'start' is not the end of the string
-	if start != len(s){
+	if start != len(s) {
 		// Append the last substring from 'start' to the end of the string to 'answer'
 		answer = append(answer, s[start:])
 	}
@@ -268,30 +285,32 @@ func SplitWhitespaces(s string) []string {
 
 /*
 Str Split By
+
 	Instructions
+
 Create a Go function that takes a string s and a separator sep as parameters. The function should split the string s into substrings using the separator sep and return a slice of strings containing the resulting substrings.
 */
 func StrSplitBy(s, sep string) []string {
 	// Initialize an empty list 'answer' to store the resulting substrings
-	answer:= []string{}
+	answer := []string{}
 	// Initialize 'start' to 0 to mark the beginning of a new substring
 	start := 0
 	// Loop through the string 's' with index 'i' up to the position where separator can last occur
-	for i:=0; i<= len(s)-len(sep);i++{
+	for i := 0; i <= len(s)-len(sep); i++ {
 		// Check if the substring from 'i' to 'i+length of sep' equals 'sep'
-		if i+len(sep) <= len(s) && s[i:i+len(sep)] == sep{
+		if i+len(sep) <= len(s) && s[i:i+len(sep)] == sep {
 			// If 'start' is not equal to 'i', append the substring from 'start' to 'i' to 'answer'
 			if start != i {
 				answer = append(answer, s[start:i])
 			}
 			// Update 'start' to skip the separator, 'i+length of sep'
-			start = i+len(sep)
+			start = i + len(sep)
 			// Increment 'i' by length of sep - 1 to skip checking characters part of current separator
-			i+= len(sep)-1
+			i += len(sep) - 1
 		}
 	}
 	// After the loop, check if 'start' is less than the length of s
-	if start < len(s){
+	if start < len(s) {
 		// Append the remaining substring from 'start' to the end of the string to 'answer'
 		answer = append(answer, s[start:])
 	}
@@ -299,17 +318,18 @@ func StrSplitBy(s, sep string) []string {
 	return answer
 }
 
-
 /*
 Substring Index
+
 	Instructions
+
 Create a Go function that behaves like the Index function. It takes two strings as input: s and toFind. The function should find the index of the first occurrence of toFind in s and return that index as an integer. If toFind is not present in s, the function should return -1.
 */
 func SubstrIndex(s string, toFind string) int {
 	// Loop through the string 's' from index 0 to the position where 'toFind' can last occur
-	for i:= 0; i<= len(s)-len(toFind);i++{
+	for i := 0; i <= len(s)-len(toFind); i++ {
 		// Check if the substring from 'i' to 'i+length of toFind' equals 'toFind'
-		if s[i:i+len(toFind)] == toFind{
+		if s[i:i+len(toFind)] == toFind {
 			// If the substring is found, return the current index 'i'
 			return i
 		}
@@ -320,33 +340,36 @@ func SubstrIndex(s string, toFind string) int {
 
 /*
 Str Compare
+
 	Instructions
+
 Create a Go function that mimics the behavior of the Compare function. It takes two strings, a and b, as input and returns an integer.
 The function should compare the two strings and return:
+
 	0 if the strings are equal,
 	-1 if a comes before b in lexicographic order,
 	1 if a comes after b in lexicographic order.
 */
 func StrCompare(a, b string) int {
 	// Loop through each character position 'i' as long as 'i' is less than the length of both strings
-	for i:= 0; i < len(a) && i< len(b);i++{
+	for i := 0; i < len(a) && i < len(b); i++ {
 		// Compare characters at position 'i' in both strings
-		if a[i] < b[i]{
+		if a[i] < b[i] {
 			// If character in 'a' is less, return -1 indicating 'a' is lexicographically smaller
 			return -1
-		}else if a[i]> b[i]{
+		} else if a[i] > b[i] {
 			// If character in 'a' is greater, return 1 indicating 'a' is lexicographically larger
 			return 1
 		}
 	}
 	// After comparing all corresponding characters, check the lengths of the strings
-	switch{
-		case len(a) < len(b):
-			// If string 'a' is shorter than string 'b', return -1
-			return -1
-		case len(a) > len(b):
-			// If string 'a' is longer than string 'b', return 1
-			return 1
+	switch {
+	case len(a) < len(b):
+		// If string 'a' is shorter than string 'b', return -1
+		return -1
+	case len(a) > len(b):
+		// If string 'a' is longer than string 'b', return 1
+		return 1
 	}
 	// If all corresponding characters are equal and the lengths are the same, return 0
 	return 0
@@ -354,9 +377,12 @@ func StrCompare(a, b string) int {
 
 /*
 Number to Base
+
 	Instructions
+
 Create a Go function that takes an integer n and a string base as parameters. The function should return the integer n represented in the specified base as a string.
 Here are the validity rules for the base:
+
 	The base must contain at least 2 unique characters.
 	The base should not contain the characters + or -.
 	The function should handle negative numbers as well (see examples in the usage section). If the base is not valid, the function should return "NV" (Not Valid).
@@ -409,8 +435,11 @@ func NbrBase(n int, base string) string {
 
 /*
 Convert Any to Decimal
+
 	Instructions
+
 Create a Go function that takes two parameters:
+
 	s: a numeric string in a specific base.
 	base: a string containing unique characters representing the available digits in that base.
 	The function should return the integer value of s in the given base. If the base is not valid, it returns 0.
@@ -418,7 +447,9 @@ Create a Go function that takes two parameters:
 	The base must contain at least 2 unique characters.
 	The base should not contain the characters + or -.
 	The function only works with valid string numbers that consist of elements present in the base. It does not handle negative numbers.
+
 Allowed packages:
+
 	math
 	strings
 */
@@ -453,9 +484,12 @@ func ConvertAnyToDec(s string, base string) int {
 
 /*
 Convert Any to Any
+
 	Instructions
+
 Create a Go function that takes three string arguments: nbr representing a numeric value in a specific base baseFrom, and baseTo representing the desired base for the returned value. The function should convert the nbr from baseFrom to baseTo and return the result as a string.
 Allowed packages:
+
 	math
 	strings
 */
@@ -512,7 +546,7 @@ func ConvertAnyToAny(nbr, baseFrom, baseTo string) string {
 	return convFromDec(decimal, baseTo)
 }
 
-func main(){
+func main() {
 	fmt.Println(GetFirstRune("kood/Jõhvi"))
 	fmt.Println(GetLastRune("kood/Jõhvi"))
 	fmt.Println(NRune("kood/Jõhvi", 3))

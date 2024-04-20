@@ -155,9 +155,6 @@ func decrypt_base64(encoded string) string {
 	binaryString := ""
 	for i := 0; i < len(encoded); i++ {
 		char := encoded[i]
-		if char == '=' {
-			continue
-		}
 		index := reverseBase64Chars[char]
 		binaryString += fmt.Sprintf("%06b", index)
 	}
