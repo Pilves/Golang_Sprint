@@ -35,5 +35,3 @@ Harness the power of Go's built-in functions to command and conquer data structu
 This repository is but a lighthouse in the vast ocean of Go. To navigate deeper waters, anchor at the [official Go documentation](https://go.dev/doc/).
 
 Let this be the genesis of your odyssey in Go. Code with joy!
-
-test
