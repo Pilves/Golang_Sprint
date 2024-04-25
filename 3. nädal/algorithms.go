@@ -368,6 +368,166 @@ func PascalsTriangle(n int) [][]int {
 	return triangle
 }
 
+/*
+Longest Common Substring
+	Instructions
+Write a Go function that takes two strings as input and finds the longest common substring that occurs in both strings. The function should return the substring that occurs earlier in the first string passed if there are multiple substrings of the same length.
+*/
+
+func LongestCommonSubstr(str1, str2 string) string {
+	maxLen := 0 // Initialize the maximum length of common substring
+	start := 0  // Initialize the starting index of the longest common substring
+
+	// Iterate through each character of str1
+	for i := 0; i < len(str1); i++ {
+		// Iterate through each character of str2
+		for j := 0; j < len(str2); j++ {
+
+			lenght := 0 // Initialize the length of the current common substring
+			index1 := i // Initialize the index in str1
+			index2 := j // Initialize the index in str2
+
+			// Check for common characters in both strings
+			for index1 < len(str1) && index2 < len(str2) && str1[index1] == str2[index2] {
+				lenght++ // Increment length for each matching character
+				index1++ // Move to the next character in str1
+				index2++ // Move to the next character in str2
+			}
+
+			// If the length of the current common substring is greater than the maxLen
+			if lenght > maxLen {
+				maxLen = lenght // Update maxLen with the current length
+				start = i       // Update start index of the longest common substring
+			}
+		}
+	}
+	// Return the longest common substring found in str1
+	return str1[start : start+maxLen]
+}
+
+/*
+Balanced Parentheses
+	Instructions
+Write a Go function that takes a string containing various characters, including parentheses ()[]{}, and checks if the parentheses are balanced. The function should return a boolean value indicating whether the parentheses are balanced or not.
+*/
+
+func BalancedParentheses(input string) bool {
+	parents := []rune{}          // Initialize an empty stack to store opening parentheses
+	parentsMap := map[rune]rune{ // Map of opening to closing parentheses
+		'(': ')',
+		'[': ']',
+		'{': '}',
+	}
+	// Iterate through each character in the input string
+	for _, char := range input {
+		// If the character is an opening parenthesis, push it onto the stack
+		if char == '(' || char == '[' || char == '{' {
+			parents = append(parents, char)
+
+			// If the character is a closing parenthesis
+		} else if char == ')' || char == ']' || char == '}' {
+			// If the stack is empty or the top of the stack does not match the corresponding closing parenthesis
+			if len(parents) == 0 || parentsMap[parents[len(parents)-1]] != char {
+				return false // Parentheses are not balanced
+			}
+			// Pop the corresponding opening parenthesis from the stack
+			parents = parents[:len(parents)-1]
+		}
+	}
+	// If there are any remaining parentheses in the stack, the input is unbalanced
+	return len(parents) == 0
+}
+
+/*
+Overlap
+	Instructions
+Write a Go function that takes two arrays of integers and returns an array containing the elements that are common in both input arrays, sorted in ascending order. If an element occurs multiple times in both arrays, it should be included in the result array as many times as it occurs.
+*/
+
+func Overlap(arr1, arr2 []int) []int {
+	freq := make(map[int]int) // Create a map to store frequency of elements in arr1
+
+	// Count the frequency of each element in arr1
+	for _, num := range arr1 {
+		freq[num]++
+	}
+
+	overlap := []int{} // Initialize an empty list to store overlapping elements
+
+	// Iterate through each element in arr2
+	for _, num := range arr2 {
+		// If the frequency of num in arr1 is greater than 0, it overlaps
+		if freq[num] > 0 {
+			overlap = append(overlap, num) // Add num to the list of overlapping elements
+			freq[num]--                    // Decrement the frequency of num
+		}
+	}
+	// Sort the overlapping elements in ascending order
+	for i := 0; i < len(overlap); i++ {
+		for j := 0; j < len(overlap)-i-1; j++ {
+			if overlap[j] > overlap[j+1] {
+				overlap[j], overlap[j+1] = overlap[j+1], overlap[j]
+			}
+		}
+	}
+	// Return the sorted list of overlapping elements
+	return overlap
+}
+
+/*
+Transpose Matrix
+	Instructions
+Write a Go function that takes a matrix represented as a 2D array and returns the transposed matrix. Transposing a matrix involves swapping its rows and columns. The function should take the original matrix and return the resulting transposed 2D array.
+*/
+
+func TransposeMatrix(matrix [][]int) [][]int {
+	rows := len(matrix)    // Get the number of rows in the original matrix
+	cols := len(matrix[0]) // Get the number of columns in the original matrix
+
+	// Create a new matrix to store the transposed matrix
+	transposed := make([][]int, cols)
+	for i := range transposed {
+		transposed[i] = make([]int, rows)
+	}
+
+	// Iterate through each element of the original matrix
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			// Assign the value of the original matrix element to the transposed matrix
+			transposed[j][i] = matrix[i][j]
+		}
+	}
+
+	// Return the transposed matrix
+	return transposed
+}
+
+/*
+Digital Root
+	Instructions
+Write a Go function that solves the digital root problem. The function should take an integer as input and return an integer. The digital root is the recursive sum of the digits of a number until a single-digit result is achieved. For example, the digital root of 9875 is 2 because 9 + 8 + 7 + 5 = 29, and 2 + 9 = 11, and finally 1 + 1 = 2.
+*/
+
+func DigitalRoot(n int) int {
+	// If n is a single digit, return n as it is the digital root
+	if n < 10 {
+		return n
+	}
+
+	// Initialize a variable to store the sum of digits
+	answer := 0
+
+	// Iterate until n becomes 0
+	for n > 0 {
+		// Add the last digit of n to the answer
+		answer += n % 10
+		// Remove the last digit from n
+		n /= 10
+	}
+	// Recursively call DigitalRoot with the sum of digits until it becomes a single digit
+	return DigitalRoot(answer)
+}
+
 func main() {
 	fmt.Println(GCD(12, 18))                          // 6
 	fmt.Println(LCM(12, 18))                          // 36
@@ -380,9 +540,15 @@ func main() {
 	fmt.Println(LongestClimb([]int{8, 4, 2, 1, 2, 4, 8, 2, 4, 8}))        // [1 2 4 8]
 	amount := 128
 	denominations := []int{1, 2, 5, 10, 20, 50, 100, 200}
-	fmt.Println(Payout(amount, denominations)) // [100 20 5 2 1]
-	fmt.Println(FromRoman("CXXVIII"))          // 128
-	fmt.Println(ToRoman(128))                  // "CXXVIII"
-	fmt.Println(PascalsTriangle(2))            // [[1] [1 1]]
-
+	fmt.Println(Payout(amount, denominations))                        // [100 20 5 2 1]
+	fmt.Println(FromRoman("CXXVIII"))                                 // 128
+	fmt.Println(ToRoman(128))                                         // "CXXVIII"
+	fmt.Println(PascalsTriangle(2))                                   // [[1] [1 1]]
+	fmt.Println(LongestCommonSubstr("ABCBDAB", "BDCAB"))              // "AB"
+	fmt.Println(BalancedParentheses("Everything { is [ fine ()]}()")) // true
+	arr1 := []int{1, 2, 2, 3, 4, 5}
+	arr2 := []int{2, 3, 4, 4, 5, 6}
+	fmt.Println(Overlap(arr1, arr2))                            // [2 3 4 5]
+	fmt.Println(TransposeMatrix([][]int{{1, 2, 3}, {4, 5, 6}})) // [[1 4], [2, 5], [3, 6]]
+	fmt.Println(DigitalRoot(123456))                            // 3
 }
