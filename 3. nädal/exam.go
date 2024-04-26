@@ -115,22 +115,22 @@ func Decompress(compressed []int) string {
 
 // 01FUCK
 func Fuck(input string) string {
-	ret := []string{}
-	retStr := ""
-	brainfuck := map[string]string{"000001": ">", "0000001": "<", "00000001": "+", "000000001": "-", "0000000001": ",", "00000000001": ".", "000000000001": "[", "0000000000001": "]"}
+	answer := []string{}
+	answerStr := ""
+	fucked := map[string]string{"000001": ">", "0000001": "<", "00000001": "+", "000000001": "-", "0000000001": ",", "00000000001": ".", "000000000001": "[", "0000000000001": "]"}
 	word := ""
 	for _, i := range input {
 		word += string(i)
 		if string(i) == "1" {
-			ret = append(ret, brainfuck[word])
+			answer = append(answer, fucked[word])
 			word = ""
 		}
 	}
 	mem := make([]byte, 30000)
 	pointer := 0
 	pointer2 := 0
-	for pointer2 < len(ret) {
-		switch ret[pointer2] {
+	for pointer2 < len(answer) {
+		switch answer[pointer2] {
 		case ">":
 			pointer++
 		case "<":
@@ -140,15 +140,15 @@ func Fuck(input string) string {
 		case "-":
 			mem[pointer]--
 		case ".":
-			retStr += string(mem[pointer])
+			answerStr += string(mem[pointer])
 		case "[":
 			if mem[pointer] == 0 {
 				dep := 1
 				for dep > 0 {
 					pointer2++
-					if ret[pointer2] == "[" {
+					if answer[pointer2] == "[" {
 						dep++
-					} else if ret[pointer2] == "]" {
+					} else if answer[pointer2] == "]" {
 						dep--
 					}
 				}
@@ -157,9 +157,9 @@ func Fuck(input string) string {
 			dep := 1
 			for dep > 0 {
 				pointer2--
-				if ret[pointer2] == "[" {
+				if answer[pointer2] == "[" {
 					dep--
-				} else if ret[pointer2] == "]" {
+				} else if answer[pointer2] == "]" {
 					dep++
 				}
 			}
@@ -167,7 +167,7 @@ func Fuck(input string) string {
 		}
 		pointer2++
 	}
-	return retStr
+	return answerStr
 }
 
 // HASH MAP
